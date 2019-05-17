@@ -7,12 +7,14 @@
 	"Orquesta.h"
 	"utn.h"
 
-1558050111 source:d:\brizuela.adrian\brizuela.adrian 1er parcial\main.c
+1558053846 source:d:\brizuela.adrian\brizuela.adrian 1er parcial\main.c
 	<stdio.h>
 	<stdlib.h>
 	<strings.h>
 	<ctype.h>
 	"Orquesta.h"
+	"Instrumento.h"
+	"Musico.h"
 	"hardcode.h"
 
 1558050111 d:\brizuela.adrian\brizuela.adrian 1er parcial\orquesta.h
@@ -26,7 +28,7 @@
 	<string.h>
 	"utn.h"
 
-1558050151 source:d:\brizuela.adrian\brizuela.adrian 1er parcial\hardcode.c
+1558053436 source:d:\brizuela.adrian\brizuela.adrian 1er parcial\hardcode.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
@@ -40,9 +42,26 @@
 	"Musico.h"
 	"Instrumento.h"
 
-1558049897 source:d:\brizuela.adrian\brizuela.adrian 1er parcial\instrumento.c
+1558053024 source:d:\brizuela.adrian\brizuela.adrian 1er parcial\instrumento.c
+	<stdio.h>
+	<stdlib.h>
+	<strings.h>
+	<ctype.h>
+	"Instrumento.h"
+	"utn.h"
 
-1558051383 d:\brizuela.adrian\brizuela.adrian 1er parcial\musico.h
+1558053205 d:\brizuela.adrian\brizuela.adrian 1er parcial\musico.h
+	"Instrumento.h"
 
-1558050111 d:\brizuela.adrian\brizuela.adrian 1er parcial\instrumento.h
+1558052989 d:\brizuela.adrian\brizuela.adrian 1er parcial\instrumento.h
+
+1558053147 source:d:\brizuela.adrian\brizuela.adrian 1er parcial\musico.c
+	<stdio.h>
+	<stdlib.h>
+	<strings.h>
+	<ctype.h>
+	"Orquesta.h"
+	"Instrumento.h"
+	"Musico.h"
+	"utn.h"
 

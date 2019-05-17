@@ -21,7 +21,7 @@ int mus_init(sMusico* musLista, int MUS_CANT)
 
     return 0;
 }
-int mus_alta(sMusico* musLista, int MUS_CANT)
+int mus_alta(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT, sInstrumento* insLista, int INS_CANT)
 {
 
     sMusico musNuevo;
@@ -29,6 +29,7 @@ int mus_alta(sMusico* musLista, int MUS_CANT)
     int ret = -1;
     int isValid = -1;
     char isIntAux[50];
+    int i;
 
     indice = mus_getFreeSpot(musLista, MUS_CANT);
 
@@ -92,63 +93,52 @@ int mus_alta(sMusico* musLista, int MUS_CANT)
         }
         while(isValid != 1);
 
+        do
+        {
+            printf("Ingrese codigo de orquesta: ");
+            fflush(stdin);
+            scanf("%d", &musNuevo.idOrquesta);
+            quitarSaltoDeLinea(itoa(musNuevo.idOrquesta, isIntAux, 10));
+            isValid = isInteger(isIntAux);
+            //el codigo de autor debe existir
+            if(isValid == 1)
+            {
+
+                musLista[indice].idOrquesta = musNuevo.idOrquesta;
+            }
+        }
+        while(isValid != 1);
+
         //Asignacion de tipo
-        if(musLista[indice].idInstrumento == 1)
-        {
+        for(i = 0; i<INS_CANT; i++){
+            if(musLista[indice].idOrquesta == insLista[i].id){
 
-            strncpy(musLista[indice].desc, "Cuerdas", MUS_LEN);
+                strncpy(musLista[indice].desc, insLista[i].nombre, MUS_LEN);
 
-        }
-        else if(musLista[indice].idInstrumento == 2)
-        {
-
-            strncpy(musLista[indice].desc, "Viento-madera", MUS_LEN);
-        }
-        else if(musLista[indice].idInstrumento == 3)
-        {
-
-            strncpy(musLista[indice].desc, "Viento-metal", MUS_LEN);
-        }
-        else if(musLista[indice].idInstrumento == 4)
-        {
-
-            strncpy(musLista[indice].desc, "Percusion", MUS_LEN);
+            }
         }
 
         //Asignacion de Orquesta
-        if(musLista[indice].idInstrumento == 1)
-        {
+        for(i = 0; i<ORQ_CANT; i++){
+            if(musLista[indice].idOrquesta == orqLista[i].id){
 
-            strncpy(musLista[indice].desc, "Cuerdas", MUS_LEN);
+                strncpy(musLista[indice].descOrq, orqLista[i].nombre, MUS_LEN);
 
-        }
-        else if(musLista[indice].idInstrumento == 2)
-        {
-
-            strncpy(musLista[indice].desc, "Viento-madera", MUS_LEN);
-        }
-        else if(musLista[indice].idInstrumento == 3)
-        {
-
-            strncpy(musLista[indice].desc, "Viento-metal", MUS_LEN);
-        }
-        else if(musLista[indice].idInstrumento == 4)
-        {
-
-            strncpy(musLista[indice].desc, "Percusion", MUS_LEN);
-        }
-            if(isValid == 1)
-            {
-                musLista[indice].id = indice + 1;
-                musLista[indice].isEmpty = 1;
-                printf("Instrumento cargado exitosamente!\n");
-                system("pause");
             }
-            ret = 0;
         }
 
-        return ret;
+        if(isValid == 1)
+        {
+            musLista[indice].id = indice + 1;
+            musLista[indice].isEmpty = 1;
+            printf("Instrumento cargado exitosamente!\n");
+            system("pause");
+        }
+        ret = 0;
     }
+
+    return ret;
+}
 
 int mus_getFreeSpot(sMusico* musLista, int MUS_CANT)
 {
@@ -167,7 +157,8 @@ int mus_getFreeSpot(sMusico* musLista, int MUS_CANT)
     return index;
 }
 
-int mus_baja(sMusico* musLista, int MUS_CANT){
+int mus_baja(sMusico* musLista, int MUS_CANT)
+{
 
     int id;
     int indice;
@@ -212,7 +203,8 @@ int mus_baja(sMusico* musLista, int MUS_CANT){
     return ret;
 }
 
-int mus_findById(sMusico* musLista, int MUS_CANT, int id){
+int mus_findById(sMusico* musLista, int MUS_CANT, int id)
+{
     int index = -1;
     int i = 0;
 
@@ -227,12 +219,14 @@ int mus_findById(sMusico* musLista, int MUS_CANT, int id){
     return index;
 }
 
-void mus_mostrarUno(sMusico musico){
+void mus_mostrarUno(sMusico musico)
+{
 
-    printf("| %4i | %15s | %15s | %2i | %15s |", musico.id, musico.nombre, musico.apellido, musico.idInstrumento, musico.desc);
+    printf("| %4i | %15s | %15s | %2i | %15s |\n", musico.id, musico.nombre, musico.apellido, musico.idInstrumento, musico.desc);
 }
 
-void mus_listarTodos(sMusico* musLista, int MUS_CANT){
+void mus_listarTodos(sMusico* musLista, int MUS_CANT)
+{
     int i;
 
     /*printf("=====================================================================\n"
@@ -253,7 +247,8 @@ void mus_listarTodos(sMusico* musLista, int MUS_CANT){
 
 }
 
-int mus_modificacion(sMusico* musLista, int MUS_CANT){
+int mus_modificacion(sMusico* musLista, int MUS_CANT)
+{
 
     int index;
     int idAux;
