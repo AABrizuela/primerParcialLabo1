@@ -98,7 +98,7 @@
 
 1558461602 e:\brizuela.adrian 1er parcial\utn.h
 
-1558470866 source:e:\brizuela.adrian 1er parcial\instrumento.c
+1558472076 source:e:\brizuela.adrian 1er parcial\instrumento.c
 	<stdio.h>
 	<stdlib.h>
 	<strings.h>
@@ -106,7 +106,7 @@
 	"Instrumento.h"
 	"utn.h"
 
-1558470322 source:e:\brizuela.adrian 1er parcial\musico.c
+1558472158 source:e:\brizuela.adrian 1er parcial\musico.c
 	<stdio.h>
 	<stdlib.h>
 	<strings.h>
@@ -116,7 +116,7 @@
 	"Musico.h"
 	"utn.h"
 
-1558471356 source:e:\brizuela.adrian 1er parcial\orquesta.c
+1558472158 source:e:\brizuela.adrian 1er parcial\orquesta.c
 	<stdio.h>
 	<stdlib.h>
 	<strings.h>

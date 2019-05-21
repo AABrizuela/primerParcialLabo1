@@ -42,7 +42,7 @@ int ins_alta(sInstrumento* insLista, int INS_CANT)
         do
         {
             printf("Ingrese nombre del instrumento: ");
-            fflush(stdin);
+            fpurge(stdin);
             fgets(insNuevo.nombre, INS_LEN, stdin);
             quitarSaltoDeLinea(insNuevo.nombre);
             corregirNombreCompuesto(insNuevo.nombre);
@@ -59,7 +59,7 @@ int ins_alta(sInstrumento* insLista, int INS_CANT)
         do
         {
             printf("Ingrese codigo de tipo: ");
-            fflush(stdin);
+            fpurge(stdin);
             fgets(insNuevo.tipo, INS_LEN, stdin);
             quitarSaltoDeLinea(insNuevo.tipo);
             isValid = isInteger(insNuevo.tipo);

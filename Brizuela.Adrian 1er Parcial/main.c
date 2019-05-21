@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdio_ext.h>
 #include <stdlib.h>
 #include <strings.h>
 #include <ctype.h>
@@ -102,7 +103,7 @@ int main()
 
             default:
                 printf("Error. Las opciones correctas van del 1 al 10. ");
-                fflush(stdin);
+                fpurge(stdin);
                 system("pause");
                 break;
         }

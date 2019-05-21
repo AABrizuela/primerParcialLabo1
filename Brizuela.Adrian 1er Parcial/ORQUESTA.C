@@ -40,7 +40,7 @@ int orq_alta(sOrquesta* orqLista, int ORQ_CANT){
         do
         {
             printf("Ingrese nombre de orquesta: ");
-            fflush(stdin);
+            fpurge(stdin);
             fgets(orqNueva.nombre, ORQ_LEN, stdin);
             quitarSaltoDeLinea(orqNueva.nombre);
             corregirNombreCompuesto(orqNueva.nombre);
@@ -57,7 +57,7 @@ int orq_alta(sOrquesta* orqLista, int ORQ_CANT){
         do
         {
             printf("Ingrese lugar de orquesta: ");
-            fflush(stdin);
+            fpurge(stdin);
             fgets(orqNueva.lugar, ORQ_LEN, stdin);
             quitarSaltoDeLinea(orqNueva.lugar);
             corregirNombreCompuesto(orqNueva.lugar);
@@ -74,7 +74,7 @@ int orq_alta(sOrquesta* orqLista, int ORQ_CANT){
         do
         {
             printf("Ingrese codigo de tipo: ");
-            fflush(stdin);
+            fpurge(stdin);
             fgets(orqNueva.tipo, 2, stdin);
             quitarSaltoDeLinea(orqNueva.tipo);
             isValid = isInteger(orqNueva.tipo);
@@ -157,7 +157,7 @@ int orq_baja(sOrquesta* orqLista, int ORQ_CANT){
         orq_mostrarUno(orquesta);
 
         printf("\nConfirma borrado? S/N ");
-        fflush(stdin);
+        fpurge(stdin);
         scanf("%c", &autorBorrar);
         if(autorBorrar != 's')
         {

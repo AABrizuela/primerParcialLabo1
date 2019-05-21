@@ -43,7 +43,7 @@ int mus_alta(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT,
         do
         {
             printf("Ingrese nombre de musico: ");
-            fflush(stdin);
+            fpurge(stdin);
             fgets(musNuevo.nombre, MUS_LEN, stdin);
             quitarSaltoDeLinea(musNuevo.nombre);
             corregirNombreCompuesto(musNuevo.nombre);
@@ -60,7 +60,7 @@ int mus_alta(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT,
         do
         {
             printf("Ingrese apellido de musico: ");
-            fflush(stdin);
+            fpurge(stdin);
             fgets(musNuevo.apellido, MUS_LEN, stdin);
             quitarSaltoDeLinea(musNuevo.apellido);
             corregirNombreCompuesto(musNuevo.apellido);
@@ -77,7 +77,7 @@ int mus_alta(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT,
         do
         {
             printf("Ingrese edad: ");
-            fflush(stdin);
+            fpurge(stdin);
             fgets(musNuevo.edad, 3, stdin);
             quitarSaltoDeLinea(musNuevo.edad);
             isValid = isInteger(musNuevo.edad);
@@ -93,7 +93,7 @@ int mus_alta(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT,
         do
         {
             printf("Ingrese codigo de instrumento: ");
-            fflush(stdin);
+            fpurge(stdin);
             fgets(musNuevo.idInstrumento, 5, stdin);
             quitarSaltoDeLinea(musNuevo.idInstrumento);
             isValid = isInteger(musNuevo.idInstrumento);
@@ -109,7 +109,7 @@ int mus_alta(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT,
         do
         {
             printf("Ingrese codigo de orquesta: ");
-            fflush(stdin);
+            fpurge(stdin);
             fgets(musNuevo.idOrquesta, 5, stdin);
             quitarSaltoDeLinea(musNuevo.idOrquesta);
             isValid = isInteger(musNuevo.idOrquesta);
@@ -200,7 +200,7 @@ int mus_baja(sMusico* musLista, int MUS_CANT)
         mus_mostrarUno(musico);
 
         printf("\nConfirma borrado? S/N ");
-        fflush(stdin);
+        fpurge(stdin);
         scanf("%c", &autorBorrar);
         if(autorBorrar != 's')
         {
@@ -312,7 +312,7 @@ int mus_modificacion(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int O
     {
         mus_listarTodosEdit(musLista, MUS_CANT);
         printf("Ingrese id a modificar: ");
-        fflush(stdin);
+        fpurge(stdin);
         fgets(idAux, 4, stdin);
         quitarSaltoDeLinea(idAux);
         isValid = isInteger(idAux);
@@ -342,7 +342,7 @@ int mus_modificacion(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int O
             printf("3.- Salir.");
 
             printf("\nQue desea modificar?\n\n");
-            fflush(stdin);
+            fpurge(stdin);
             scanf("%d", &optionEdit);
 
             switch(optionEdit)
@@ -352,7 +352,7 @@ int mus_modificacion(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int O
                 do
                 {
                     printf("Ingrese nueva edad: ");
-                    fflush(stdin);
+                    fpurge(stdin);
                     fgets(musico.edad, 3, stdin);
                     quitarSaltoDeLinea(musico.edad);
                     isValid = isInteger(musico.edad);
@@ -371,7 +371,7 @@ int mus_modificacion(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int O
                 do
                 {
                     printf("Ingrese nuevo codigo de orquesta: ");
-                    fflush(stdin);
+                    fpurge(stdin);
                     fgets(musico.idOrquesta, 5, stdin);
                     quitarSaltoDeLinea(musico.idOrquesta);
                     isValid = isInteger(musico.idOrquesta);
