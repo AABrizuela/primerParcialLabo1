@@ -6,10 +6,10 @@
 typedef struct{
 
     int id;
-    char nombre[51];
-    int tipo;
+    char nombre[INS_LEN];
+    char tipo[INS_LEN];
     int isEmpty;
-    char desc[51];
+    char desc[INS_LEN];
 
 }sInstrumento;
 

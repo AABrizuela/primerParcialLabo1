@@ -7,7 +7,7 @@
 	"Orquesta.h"
 	"utn.h"
 
-1558053846 source:d:\brizuela.adrian\brizuela.adrian 1er parcial\main.c
+1558054631 source:d:\brizuela.adrian\brizuela.adrian 1er parcial\main.c
 	<stdio.h>
 	<stdlib.h>
 	<strings.h>
@@ -28,7 +28,7 @@
 	<string.h>
 	"utn.h"
 
-1558053436 source:d:\brizuela.adrian\brizuela.adrian 1er parcial\hardcode.c
+1558054353 source:d:\brizuela.adrian\brizuela.adrian 1er parcial\hardcode.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
@@ -37,7 +37,7 @@
 	"hardcode.h"
 	"utn.h"
 
-1558050151 d:\brizuela.adrian\brizuela.adrian 1er parcial\hardcode.h
+1558054369 d:\brizuela.adrian\brizuela.adrian 1er parcial\hardcode.h
 	"Orquesta.h"
 	"Musico.h"
 	"Instrumento.h"
@@ -55,7 +55,7 @@
 
 1558052989 d:\brizuela.adrian\brizuela.adrian 1er parcial\instrumento.h
 
-1558053147 source:d:\brizuela.adrian\brizuela.adrian 1er parcial\musico.c
+1558054353 source:d:\brizuela.adrian\brizuela.adrian 1er parcial\musico.c
 	<stdio.h>
 	<stdlib.h>
 	<strings.h>
@@ -63,5 +63,71 @@
 	"Orquesta.h"
 	"Instrumento.h"
 	"Musico.h"
+	"utn.h"
+
+1558471326 source:e:\brizuela.adrian 1er parcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	<strings.h>
+	<ctype.h>
+	"Orquesta.h"
+	"Instrumento.h"
+	"Musico.h"
+	"hardcode.h"
+
+1558471098 e:\brizuela.adrian 1er parcial\orquesta.h
+
+1558470672 e:\brizuela.adrian 1er parcial\instrumento.h
+
+1558469916 e:\brizuela.adrian 1er parcial\musico.h
+	"Instrumento.h"
+
+1558470818 e:\brizuela.adrian 1er parcial\hardcode.h
+	"Orquesta.h"
+	"Musico.h"
+	"Instrumento.h"
+
+1558471356 source:e:\brizuela.adrian 1er parcial\hardcode.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"hardcode.h"
+	"utn.h"
+
+1558461602 e:\brizuela.adrian 1er parcial\utn.h
+
+1558470866 source:e:\brizuela.adrian 1er parcial\instrumento.c
+	<stdio.h>
+	<stdlib.h>
+	<strings.h>
+	<ctype.h>
+	"Instrumento.h"
+	"utn.h"
+
+1558470322 source:e:\brizuela.adrian 1er parcial\musico.c
+	<stdio.h>
+	<stdlib.h>
+	<strings.h>
+	<ctype.h>
+	"Orquesta.h"
+	"Instrumento.h"
+	"Musico.h"
+	"utn.h"
+
+1558471356 source:e:\brizuela.adrian 1er parcial\orquesta.c
+	<stdio.h>
+	<stdlib.h>
+	<strings.h>
+	<ctype.h>
+	"Orquesta.h"
+	"utn.h"
+
+1558461378 source:e:\brizuela.adrian 1er parcial\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
 	"utn.h"
 

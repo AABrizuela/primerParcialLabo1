@@ -13,4 +13,5 @@ int isEmail(char *cadena);
 char getChain(char *mensaje);
 void corregirNombreCompuesto(char *cadena);
 void quitarSaltoDeLinea(char *cadena);
+
 #endif // UTN_H_INCLUDED

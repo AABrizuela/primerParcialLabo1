@@ -21,31 +21,34 @@ int main()
 
     orq_init(orqLista, ORQ_CANT);
 
-    orq_hardcode(orqLista, ORQ_CANT, 1, "Filarmonica de Londres", "Londres", 2, "Filarmonica", 1);
-    orq_hardcode(orqLista, ORQ_CANT, 2, "Sinfonica de Lanus", "Lanus", 1, "Sinfonica", 1);
-    orq_hardcode(orqLista, ORQ_CANT, 3, "Camara de Banfield", "Banfield", 3, "Camara", 1);
-    mus_hardcode(musLista, MUS_CANT, 1, "Carlos", "Cardozo", 50, 1, 1, 1);
-    mus_hardcode(musLista, MUS_CANT, 2, "Jorge", "Perez", 35, 2, 2, 1);
-    mus_hardcode(musLista, MUS_CANT, 3, "Martin", "Martinez", 28, 3, 3, 1);
-    ins_hardcode(insLista, INS_CANT, 1, "Piano", 1, "Cuerdas", 1);
-    ins_hardcode(insLista, INS_CANT, 2, "Flauta", 2, "Viento-madera", 1);
-    ins_hardcode(insLista, INS_CANT, 1, "Tuba", 3, "Viento-metal", 1);
-    ins_hardcode(insLista, INS_CANT, 1, "Bateria", 4, "Percusion", 1);
+    orq_hardcode(orqLista, ORQ_CANT, 1, "Filarmonica de Gerli", "Gerli", "2", "Filarmonica", 1);
+    orq_hardcode(orqLista, ORQ_CANT, 2, "Sinfonica de Lanus", "Lanus", "1", "Sinfonica", 1);
+    orq_hardcode(orqLista, ORQ_CANT, 3, "Camara de Banfield", "Banfield", "3", "Camara", 1);
+    mus_hardcode(musLista, MUS_CANT, 1, "Carlos", "Cardozo", "50", "1", "Filarmonica de Gerli", "1", "Piano", 1);
+    mus_hardcode(musLista, MUS_CANT, 2, "Jorge", "Perez", "35", "2", "Sinfonica de Lanus", "2", "Flauta", 1);
+    mus_hardcode(musLista, MUS_CANT, 3, "Martin", "Martinez", "28", "3", "Camara de Banfield", "3", "Tuba", 1);
+    ins_hardcode(insLista, INS_CANT, 1, "Piano", "1", "Cuerdas", 1);
+    ins_hardcode(insLista, INS_CANT, 2, "Flauta", "2", "Viento-madera", 1);
+    ins_hardcode(insLista, INS_CANT, 3, "Tuba", "3", "Viento-metal", 1);
+    ins_hardcode(insLista, INS_CANT, 4, "Bateria", "4", "Percusion", 1);
 
     do{
 
         system("cls");
         printf("*** BIENVENIDO ***\n\n");
 
-        printf("1.- Agregar Orquesta.\n");
-        printf("2.- Eliminar Orquesta.\n");
-        printf("3.- Imprimir Orquestas.\n");
-        printf("4.- Agregar Musico.\n");
-        printf("5.- Modificar Musico.\n");
-        printf("6.- Eliminar Musico.\n");
-        printf("7.- Imprimir Musicos.\n");
-        printf("8.- Agregar Instrumento.\n");
-        printf("9.- Imprimir Instrumentos.\n");
+        printf("ORQUESTA\n");
+        printf("\t1.- Agregar Orquesta.\n");
+        printf("\t2.- Eliminar Orquesta.\n");
+        printf("\t3.- Imprimir Orquestas.\n");
+        printf("MUSICO\n");
+        printf("\t4.- Agregar Musico.\n");
+        printf("\t5.- Modificar Musico.\n");
+        printf("\t6.- Eliminar Musico.\n");
+        printf("\t7.- Imprimir Musicos.\n");
+        printf("INSTRUMENTO\n");
+        printf("\t8.- Agregar Instrumento.\n");
+        printf("\t9.- Imprimir Instrumentos.\n\n");
         printf("10.- Salir.\n\n");
 
         printf("Ingrese opcion: ");
@@ -72,7 +75,7 @@ int main()
                 break;
 
             case 5:
-                mus_modificacion(musLista, MUS_CANT);
+                mus_modificacion(musLista, MUS_CANT, orqLista, ORQ_CANT);
                 break;
 
             case 6:
@@ -90,6 +93,7 @@ int main()
 
             case 9:
                 ins_listarTodos(insLista, MUS_CANT);
+                system("pause");
                 break;
 
             case 10:

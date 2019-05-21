@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <string.h>
 #include "utn.h"
+
 /** \brief Toma una cadena de caracteres para validarlo como solo caracteres
  *
  * \param char cadena[]
@@ -23,6 +24,7 @@ int areCharacters(char *cadena)
     }
     return retorno;
 }
+
 /** \brief Toma una cadena de numeros para validarlo como entero
  *
  * \param char cadena[]
@@ -43,6 +45,7 @@ int isInteger(char *cadena)
     }
     return retorno;
 }
+
 /** \brief Toma una cadena de numeros para validarlo como flotante
  *
  * \param char cadena[]
@@ -69,6 +72,7 @@ int isFloat(char *cadena)
     }
     return retorno;
 }
+
 /** \brief Toma un caracter para validarlo como de acuerdo a letra(s) especificada(s)
  *
  * \param char caracter
@@ -84,6 +88,7 @@ int isCharacter(char caracter)
         retorno = 1;
     return retorno;
 }
+
 /** \brief Toma una cadena de caracteres para validarlo como caracteres & numeros
  *
  * \param char cadena[]
@@ -104,6 +109,7 @@ int isAlphaNumeric(char *cadena)
     }
     return retorno;
 }
+
 /**
  * \brief Verifica si el valor recibido contiene solo números, + y -
  * \param cadena
@@ -149,6 +155,7 @@ int isEmail(char *cadena)
     }
     return retorno;
 }
+
 /** \brief Valida los tres enteros ingresados como fecha.
  *
  * \param day
@@ -195,6 +202,7 @@ int isFecha(int day, int month, int year)
     }
     return retorno;
 }
+
 /** \brief Plancha toda la string y pone en Mayuscula la primer letra de cada nombre ingresado
  *
  * \param char *cadena
@@ -212,6 +220,7 @@ void corregirNombreCompuesto(char *cadena)
     }
     cadena[0] = toupper(cadena[0]);
 }
+
 /** \brief Quita el salto de linea que toma la funcion fgets
  *
  * \param char *cadena
@@ -223,6 +232,7 @@ void quitarSaltoDeLinea(char *cadena)
     if (cadena[strlen(cadena)-1]=='\n')
         cadena[strlen(cadena)-1]='\0';
 }
+
 int esDigito(char *cadena)
 {
     int retorno = 1, i, cantidad;

@@ -27,7 +27,7 @@ int ins_alta(sInstrumento* insLista, int INS_CANT)
     int indice;
     int ret = -1;
     int isValid = -1;
-    char isIntAux[50];
+    //char isIntAux[50];
 
     indice = ins_getFreeSpot(insLista, INS_CANT);
 
@@ -60,35 +60,34 @@ int ins_alta(sInstrumento* insLista, int INS_CANT)
         {
             printf("Ingrese codigo de tipo: ");
             fflush(stdin);
-            scanf("%d", &insNuevo.tipo);
-            quitarSaltoDeLinea(itoa(insNuevo.tipo, isIntAux, 10));
-            isValid = isInteger(isIntAux);
-            //el codigo de autor debe existir
+            fgets(insNuevo.tipo, INS_LEN, stdin);
+            quitarSaltoDeLinea(insNuevo.tipo);
+            isValid = isInteger(insNuevo.tipo);
             if(isValid == 1)
             {
 
-                insLista[indice].tipo = insNuevo.tipo;
+                strncpy(insLista[indice].tipo, insNuevo.tipo, INS_LEN);
             }
         }
         while(isValid != 1);
 
-        if(insLista[indice].id == 1)
+        if(atoi(insLista[indice].tipo) == 1)
         {
 
             strncpy(insLista[indice].desc, "Cuerdas", INS_LEN);
 
         }
-        else if(insLista[indice].id == 2)
+        else if(atoi(insLista[indice].tipo) == 2)
         {
 
             strncpy(insLista[indice].desc, "Viento-madera", INS_LEN);
         }
-        else if(insLista[indice].id == 3)
+        else if(atoi(insLista[indice].tipo) == 3)
         {
 
             strncpy(insLista[indice].desc, "Viento-metal", INS_LEN);
         }
-        else if(insLista[indice].id == 4)
+        else if(atoi(insLista[indice].tipo) == 4)
         {
 
             strncpy(insLista[indice].desc, "Percusion", INS_LEN);
@@ -107,7 +106,8 @@ int ins_alta(sInstrumento* insLista, int INS_CANT)
     return ret;
 }
 
-int ins_getFreeSpot(sInstrumento* insLista, int INS_CANT){
+int ins_getFreeSpot(sInstrumento* insLista, int INS_CANT)
+{
 
     int index = -1, i=0;
 
@@ -123,7 +123,8 @@ int ins_getFreeSpot(sInstrumento* insLista, int INS_CANT){
     return index;
 }
 
-int ins_findById(sInstrumento* insLista, int INS_CANT, int id){
+int ins_findById(sInstrumento* insLista, int INS_CANT, int id)
+{
 
     int index = -1;
     int i = 0;
@@ -139,12 +140,14 @@ int ins_findById(sInstrumento* insLista, int INS_CANT, int id){
     return index;
 }
 
-void ins_mostrarUno(sInstrumento instrumento){
+void ins_mostrarUno(sInstrumento instrumento)
+{
 
-    printf("| %2i | %15s | %15s", instrumento.id, instrumento.nombre, instrumento.desc);
+    printf("| %2i | %15s | %15s |\n", instrumento.id, instrumento.nombre, instrumento.desc);
 }
 
-void ins_listarTodos(sInstrumento* insLista, int INS_CANT){
+void ins_listarTodos(sInstrumento* insLista, int INS_CANT)
+{
 
     int i;
 
