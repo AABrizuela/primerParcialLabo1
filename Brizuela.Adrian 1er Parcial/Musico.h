@@ -8,14 +8,14 @@
 typedef struct{
 
     int id;
-    char nombre[51];
-    char apellido[51];
-    int edad;
-    int idOrquesta;
-    int idInstrumento;
+    char nombre[MUS_LEN];
+    char apellido[MUS_LEN];
+    char edad[3];
+    char idOrquesta[5];
+    char idInstrumento[5];
     int isEmpty;
-    char desc[51];
-    char descOrq[51];
+    char descIns[MUS_LEN];
+    char descOrq[MUS_LEN];
 
 }sMusico;
 
@@ -26,6 +26,8 @@ int mus_baja(sMusico* musLista, int MUS_CAN);
 int mus_findById(sMusico* musLista, int MUS_CAN, int id);
 void mus_mostrarUno(sMusico musico);
 void mus_listarTodos(sMusico* musLista, int MUS_CAN);
-int mus_modificacion(sMusico* musLista, int MUS_CAN);
+int mus_modificacion(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT);
+void mus_mostrarUnoEdit(sMusico musico);
+void mus_listarTodosEdit(sMusico* musLista, int MUS_CANT);
 
 #endif // MUSICO_H

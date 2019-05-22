@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <stdio_ext.h>
+#include <string.h>
 #include <ctype.h>
 #include "Instrumento.h"
 #include "utn.h"
@@ -42,7 +43,7 @@ int ins_alta(sInstrumento* insLista, int INS_CANT)
         do
         {
             printf("Ingrese nombre del instrumento: ");
-            fpurge(stdin);
+            __fpurge(stdin);
             fgets(insNuevo.nombre, INS_LEN, stdin);
             quitarSaltoDeLinea(insNuevo.nombre);
             corregirNombreCompuesto(insNuevo.nombre);
@@ -59,7 +60,7 @@ int ins_alta(sInstrumento* insLista, int INS_CANT)
         do
         {
             printf("Ingrese codigo de tipo: ");
-            fpurge(stdin);
+            __fpurge(stdin);
             fgets(insNuevo.tipo, INS_LEN, stdin);
             quitarSaltoDeLinea(insNuevo.tipo);
             isValid = isInteger(insNuevo.tipo);
@@ -98,7 +99,9 @@ int ins_alta(sInstrumento* insLista, int INS_CANT)
             insLista[indice].id = indice + 1;
             insLista[indice].isEmpty = 1;
             printf("Orquesta cargada exitosamente!\n");
-            system("pause");
+            __fpurge(stdin);
+            printf("Prsione cualquier tecla para continuar...");
+            getchar();
         }
         ret = 0;
     }

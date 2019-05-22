@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <stdio_ext.h>
+#include <string.h>
 #include <ctype.h>
 #include "Orquesta.h"
 #include "utn.h"
 
-int orq_init(sOrquesta* orqLista, int ORQ_CANT){
+int orq_init(sOrquesta* orqLista, int ORQ_CANT)
+{
 
     int i = 0;
 
@@ -19,13 +21,14 @@ int orq_init(sOrquesta* orqLista, int ORQ_CANT){
     return 0;
 }
 
-int orq_alta(sOrquesta* orqLista, int ORQ_CANT){
+int orq_alta(sOrquesta* orqLista, int ORQ_CANT)
+{
 
     sOrquesta orqNueva;
     int indice;
     int ret = -1;
     int isValid = -1;
-    char isIntAux[50];
+
 
     indice = orq_getFreeSpot(orqLista, ORQ_CANT);
 
@@ -40,7 +43,7 @@ int orq_alta(sOrquesta* orqLista, int ORQ_CANT){
         do
         {
             printf("Ingrese nombre de orquesta: ");
-            fflush(stdin);
+            __fpurge(stdin);
             fgets(orqNueva.nombre, ORQ_LEN, stdin);
             quitarSaltoDeLinea(orqNueva.nombre);
             corregirNombreCompuesto(orqNueva.nombre);
@@ -57,7 +60,7 @@ int orq_alta(sOrquesta* orqLista, int ORQ_CANT){
         do
         {
             printf("Ingrese lugar de orquesta: ");
-            fflush(stdin);
+            __fpurge(stdin);
             fgets(orqNueva.lugar, ORQ_LEN, stdin);
             quitarSaltoDeLinea(orqNueva.lugar);
             corregirNombreCompuesto(orqNueva.lugar);
@@ -74,29 +77,35 @@ int orq_alta(sOrquesta* orqLista, int ORQ_CANT){
         do
         {
             printf("Ingrese codigo de tipo: ");
-            fflush(stdin);
-            scanf("%d", &orqNueva.tipo);
-            quitarSaltoDeLinea(itoa(orqNueva.tipo, isIntAux, 10));
-            isValid = isInteger(isIntAux);
-            //el codigo de autor debe existir
+            __fpurge(stdin);
+            fgets(orqNueva.tipo, 2, stdin);
+            quitarSaltoDeLinea(orqNueva.tipo);
+            isValid = isInteger(orqNueva.tipo);
             if(isValid == 1)
             {
 
-                orqLista[indice].tipo = orqNueva.tipo;
+                strncpy(orqLista[indice].tipo, orqNueva.tipo, 2);
             }
         }
         while(isValid != 1);
 
-        if(orqLista[indice].tipo == 1){
+        if(atoi(orqLista[indice].tipo) == 1)
+        {
 
             strncpy(orqLista[indice].desc, "Sinfonica", ORQ_LEN);
 
-        }else if(orqLista[indice].tipo == 2){
+        }
+        else if(atoi(orqLista[indice].tipo) == 2)
+        {
 
             strncpy(orqLista[indice].desc, "Filarmonica", ORQ_LEN);
-        }else if(orqLista[indice].tipo == 3){
+
+        }
+        else if(atoi(orqLista[indice].tipo) == 3)
+        {
 
             strncpy(orqLista[indice].desc, "Camara", ORQ_LEN);
+
         }
 
         if(isValid == 1)
@@ -104,7 +113,7 @@ int orq_alta(sOrquesta* orqLista, int ORQ_CANT){
             orqLista[indice].id = indice + 1;
             orqLista[indice].isEmpty = 1;
             printf("Orquesta cargada exitosamente!\n");
-            system("pause");
+
         }
         ret = 0;
     }
@@ -113,7 +122,8 @@ int orq_alta(sOrquesta* orqLista, int ORQ_CANT){
 
 }
 
-int orq_getFreeSpot(sOrquesta* orqLista, int ORQ_CANT){
+int orq_getFreeSpot(sOrquesta* orqLista, int ORQ_CANT)
+{
 
     int index = -1, i=0;
 
@@ -130,7 +140,8 @@ int orq_getFreeSpot(sOrquesta* orqLista, int ORQ_CANT){
 
 }
 
-int orq_baja(sOrquesta* orqLista, int ORQ_CANT){
+int orq_baja(sOrquesta* orqLista, int ORQ_CANT)
+{
 
     int id;
     int indice;
@@ -156,7 +167,7 @@ int orq_baja(sOrquesta* orqLista, int ORQ_CANT){
         orq_mostrarUno(orquesta);
 
         printf("\nConfirma borrado? S/N ");
-        fflush(stdin);
+        __fpurge(stdin);
         scanf("%c", &autorBorrar);
         if(autorBorrar != 's')
         {
@@ -169,13 +180,16 @@ int orq_baja(sOrquesta* orqLista, int ORQ_CANT){
             printf("Se ha eliminado el orquesta.\n\n");
             ret = 0;
         }
-        system("pause");
+        __fpurge(stdin);
+        printf("Prsione cualquier tecla para continuar...");
+        getchar();
     }
 
     return ret;
 }
 
-int orq_findById(sOrquesta* orqLista, int ORQ_CANT, int id){
+int orq_findById(sOrquesta* orqLista, int ORQ_CANT, int id)
+{
 
     int index = -1;
     int i = 0;
@@ -191,12 +205,14 @@ int orq_findById(sOrquesta* orqLista, int ORQ_CANT, int id){
     return index;
 }
 
-void orq_mostrarUno(sOrquesta orquesta){
+void orq_mostrarUno(sOrquesta orquesta)
+{
 
     printf("| %2i | %25s | %10s | %15s |\n", orquesta.id, orquesta.nombre, orquesta.lugar, orquesta.desc);
 }
 
-void orq_listarTodos(sOrquesta* orqLista, int ORQ_CANT){
+void orq_listarTodos(sOrquesta* orqLista, int ORQ_CANT)
+{
 
     int i;
 
@@ -214,6 +230,7 @@ void orq_listarTodos(sOrquesta* orqLista, int ORQ_CANT){
         }
 
     }
+
     /*printf("=====================================================================\n");*/
 
 }

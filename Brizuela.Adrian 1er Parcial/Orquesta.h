@@ -5,12 +5,12 @@
 
 typedef struct{
 
-    char nombre[51];
-    char lugar[51];
-    int tipo;
+    char nombre[ORQ_LEN];
+    char lugar[ORQ_LEN];
+    char tipo[2];
     int id;
     int isEmpty;
-    char desc[51];
+    char desc[ORQ_LEN];
 
 }sOrquesta;
 

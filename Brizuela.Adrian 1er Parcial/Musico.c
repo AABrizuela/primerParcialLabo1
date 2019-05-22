@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <stdio_ext.h>
+#include <string.h>
 #include <ctype.h>
 #include "Orquesta.h"
 #include "Instrumento.h"
@@ -28,7 +29,6 @@ int mus_alta(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT,
     int indice;
     int ret = -1;
     int isValid = -1;
-    char isIntAux[50];
     int i;
 
     indice = mus_getFreeSpot(musLista, MUS_CANT);
@@ -44,7 +44,7 @@ int mus_alta(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT,
         do
         {
             printf("Ingrese nombre de musico: ");
-            fflush(stdin);
+            __fpurge(stdin);
             fgets(musNuevo.nombre, MUS_LEN, stdin);
             quitarSaltoDeLinea(musNuevo.nombre);
             corregirNombreCompuesto(musNuevo.nombre);
@@ -61,7 +61,7 @@ int mus_alta(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT,
         do
         {
             printf("Ingrese apellido de musico: ");
-            fflush(stdin);
+            __fpurge(stdin);
             fgets(musNuevo.apellido, MUS_LEN, stdin);
             quitarSaltoDeLinea(musNuevo.apellido);
             corregirNombreCompuesto(musNuevo.apellido);
@@ -75,20 +75,34 @@ int mus_alta(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT,
         }
         while(isValid != 1);
 
+        do
+        {
+            printf("Ingrese edad: ");
+            __fpurge(stdin);
+            fgets(musNuevo.edad, 3, stdin);
+            quitarSaltoDeLinea(musNuevo.edad);
+            isValid = isInteger(musNuevo.edad);
+            if(isValid == 1)
+            {
 
+                strncpy(musLista[indice].edad, musNuevo.edad, 3);
+
+            }
+        }
+        while(isValid != 1);
 
         do
         {
             printf("Ingrese codigo de instrumento: ");
-            fflush(stdin);
-            scanf("%d", &musNuevo.idInstrumento);
-            quitarSaltoDeLinea(itoa(musNuevo.idInstrumento, isIntAux, 10));
-            isValid = isInteger(isIntAux);
-            //el codigo de autor debe existir
+            __fpurge(stdin);
+            fgets(musNuevo.idInstrumento, 5, stdin);
+            quitarSaltoDeLinea(musNuevo.idInstrumento);
+            isValid = isInteger(musNuevo.idInstrumento);
             if(isValid == 1)
             {
 
-                musLista[indice].idInstrumento = musNuevo.idInstrumento;
+                strncpy(musLista[indice].idInstrumento, musNuevo.idInstrumento, 5);
+
             }
         }
         while(isValid != 1);
@@ -96,34 +110,37 @@ int mus_alta(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT,
         do
         {
             printf("Ingrese codigo de orquesta: ");
-            fflush(stdin);
-            scanf("%d", &musNuevo.idOrquesta);
-            quitarSaltoDeLinea(itoa(musNuevo.idOrquesta, isIntAux, 10));
-            isValid = isInteger(isIntAux);
-            //el codigo de autor debe existir
+            __fpurge(stdin);
+            fgets(musNuevo.idOrquesta, 5, stdin);
+            quitarSaltoDeLinea(musNuevo.idOrquesta);
+            isValid = isInteger(musNuevo.idOrquesta);
             if(isValid == 1)
             {
 
-                musLista[indice].idOrquesta = musNuevo.idOrquesta;
+                strncpy(musLista[indice].idOrquesta, musNuevo.idOrquesta, 5);
+
             }
         }
         while(isValid != 1);
 
         //Asignacion de tipo
-        for(i = 0; i<INS_CANT; i++){
-            if(musLista[indice].idOrquesta == insLista[i].id){
+        for(i = 0; i<INS_CANT; i++)
+        {
+            if(atoi(musLista[indice].idInstrumento) == insLista[i].id)
+            {
 
-                strncpy(musLista[indice].desc, insLista[i].nombre, MUS_LEN);
-
+                strncpy(musLista[indice].descIns, insLista[i].nombre, MUS_LEN);
+                break;
             }
         }
 
         //Asignacion de Orquesta
-        for(i = 0; i<ORQ_CANT; i++){
-            if(musLista[indice].idOrquesta == orqLista[i].id){
-
-                strncpy(musLista[indice].descOrq, orqLista[i].nombre, MUS_LEN);
-
+        for(i = 0; i<ORQ_CANT; i++)
+        {
+            if(atoi(musLista[indice].idOrquesta) == orqLista[i].id)
+            {
+                strncpy(musLista[indice].descOrq, orqLista[i].nombre, ORQ_LEN);
+                break;
             }
         }
 
@@ -131,8 +148,10 @@ int mus_alta(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT,
         {
             musLista[indice].id = indice + 1;
             musLista[indice].isEmpty = 1;
-            printf("Instrumento cargado exitosamente!\n");
-            system("pause");
+            printf("Musico cargado exitosamente!\n");
+            __fpurge(stdin);
+            printf("Prsione cualquier tecla para continuar...");
+            getchar();
         }
         ret = 0;
     }
@@ -184,7 +203,7 @@ int mus_baja(sMusico* musLista, int MUS_CANT)
         mus_mostrarUno(musico);
 
         printf("\nConfirma borrado? S/N ");
-        fflush(stdin);
+        __fpurge(stdin);
         scanf("%c", &autorBorrar);
         if(autorBorrar != 's')
         {
@@ -197,7 +216,9 @@ int mus_baja(sMusico* musLista, int MUS_CANT)
             printf("Se ha eliminado el musico.\n\n");
             ret = 0;
         }
-        system("pause");
+        __fpurge(stdin);
+        printf("Prsione cualquier tecla para continuar...");
+        getchar();
     }
 
     return ret;
@@ -222,16 +243,26 @@ int mus_findById(sMusico* musLista, int MUS_CANT, int id)
 void mus_mostrarUno(sMusico musico)
 {
 
-    printf("| %4i | %15s | %15s | %2i | %15s |\n", musico.id, musico.nombre, musico.apellido, musico.idInstrumento, musico.desc);
+    printf("| %4i | %15s | %15s | %25s | %15s |\n", musico.id, musico.nombre, musico.apellido, musico.descOrq, musico.descIns);
+
+}
+
+void mus_mostrarUnoEdit(sMusico musico)
+{
+
+    printf("| %4i | %15s | %15s |\n", musico.id, musico.nombre, musico.apellido);
+
 }
 
 void mus_listarTodos(sMusico* musLista, int MUS_CANT)
 {
     int i;
 
-    /*printf("=====================================================================\n"
-           "||                        Listado de Orquestas                     ||\n"
-           "=====================================================================\n");*/
+    /*printf("==========================================================================================\n"
+           "||                                  Listado de Orquestas                                ||\n"
+           "==========================================================================================\n"
+           "|  ID  |     NOMBRE      |    APELLIDO     |          ORQUESTA         |   INSTRUMENTO   |\n"
+           "==========================================================================================\n");*/
     for(i = 0; i < MUS_CANT; i++)
     {
 
@@ -243,37 +274,65 @@ void mus_listarTodos(sMusico* musLista, int MUS_CANT)
         }
 
     }
-    /*printf("=====================================================================\n");*/
+    /*printf("==========================================================================================\n");*/
 
 }
 
-int mus_modificacion(sMusico* musLista, int MUS_CANT)
+void mus_listarTodosEdit(sMusico* musLista, int MUS_CANT)
+{
+    int i;
+
+    /*printf("==========================================================================================\n"
+           "||                                  Listado de Orquestas                                ||\n"
+           "==========================================================================================\n"
+           "|  ID  |     NOMBRE      |    APELLIDO     |          ORQUESTA         |   INSTRUMENTO   |\n"
+           "==========================================================================================\n");*/
+    for(i = 0; i < MUS_CANT; i++)
+    {
+
+        if(musLista[i].isEmpty == 1)
+        {
+
+            mus_mostrarUnoEdit(musLista[i]);
+
+        }
+
+    }
+    /*printf("==========================================================================================\n");*/
+
+}
+
+int mus_modificacion(sMusico* musLista, int MUS_CANT, sOrquesta* orqLista, int ORQ_CANT)
 {
 
     int index;
-    int idAux;
+    char idAux[4];
     int isValid;
-    //char isIntAux[50];
     int ret = -1;
     int optionEdit = 0;
-    char idAuxChar[10];
+    int i;
     sMusico musico;
 
     do
     {
-        mus_listarTodos(musLista, MUS_LEN);
+        mus_listarTodosEdit(musLista, MUS_CANT);
         printf("Ingrese id a modificar: ");
-        scanf("%d", &idAux);
-        isValid = isInteger(itoa(idAux, idAuxChar, 10));
+        __fpurge(stdin);
+        fgets(idAux, 4, stdin);
+        quitarSaltoDeLinea(idAux);
+        isValid = isInteger(idAux);
     }
     while(isValid != 1);
 
-    index = mus_findById(musLista, MUS_LEN, idAux);
+    index = mus_findById(musLista, MUS_CANT, atoi(idAux));
 
     if(index == -1)
     {
 
-        printf("No hay ningun musico con el id %d\n", idAux);
+        printf("No hay ningun musico con el id %s\n", idAux);
+        __fpurge(stdin);
+        printf("Prsione cualquier tecla para continuar...");
+        getchar();
     }
     else
     {
@@ -281,20 +340,16 @@ int mus_modificacion(sMusico* musLista, int MUS_CANT)
         {
             musico = musLista[index];
 
-            system("cls");
+            system("clear");
             printf("Musico a modificar: \n");
             mus_mostrarUno(musico);
 
-            printf("1.- Nombre.\n");
-            printf("2.- Apellido.\n");
-            printf("3.- Sexo.\n");
-            printf("4.- Telefono.\n");
-            printf("5.- E-Mail.\n");
-            printf("6.- Fecha de asociado.\n");
-            printf("7.- Salir.");
+            printf("1.- Edad.\n");
+            printf("2.- Codigo de Orquesta.\n");
+            printf("3.- Salir.");
 
             printf("\nQue desea modificar?\n\n");
-            fflush(stdin);
+            __fpurge(stdin);
             scanf("%d", &optionEdit);
 
             switch(optionEdit)
@@ -303,18 +358,18 @@ int mus_modificacion(sMusico* musLista, int MUS_CANT)
             case 1:
                 do
                 {
-                    printf("Ingrese nuevo nombre: ");
-                    fflush(stdin);
-                    fgets(musico.nombre, MUS_LEN, stdin);
-                    quitarSaltoDeLinea(musico.nombre);
-                    corregirNombreCompuesto(musico.nombre);
-                    isValid = areCharacters(musico.nombre);
+                    printf("Ingrese nueva edad: ");
+                    __fpurge(stdin);
+                    fgets(musico.edad, 3, stdin);
+                    quitarSaltoDeLinea(musico.edad);
+                    isValid = isInteger(musico.edad);
                     if(isValid == 1)
                     {
 
-                        strncpy(musLista[index].nombre, musico.nombre, MUS_LEN);
+                        strncpy(musLista[index].edad, musico.edad, 3);
 
                     }
+                    printf("Edad modificada exitosamente!\n");
                 }
                 while(isValid != 1);
                 break;
@@ -322,48 +377,42 @@ int mus_modificacion(sMusico* musLista, int MUS_CANT)
             case 2:
                 do
                 {
-                    printf("Ingrese nuevo apellido: ");
-                    fflush(stdin);
-                    fgets(musico.apellido, MUS_LEN, stdin);
-                    quitarSaltoDeLinea(musico.apellido);
-                    corregirNombreCompuesto(musico.apellido);
-                    isValid = areCharacters(musico.apellido);
+                    printf("Ingrese nuevo codigo de orquesta: ");
+                    __fpurge(stdin);
+                    fgets(musico.idOrquesta, 5, stdin);
+                    quitarSaltoDeLinea(musico.idOrquesta);
+                    isValid = isInteger(musico.idOrquesta);
                     if(isValid == 1)
                     {
 
-                        strncpy(musLista[index].apellido, musico.apellido, MUS_LEN);
+                        strncpy(musLista[index].idOrquesta, musico.idOrquesta, 5);
 
                     }
+                    printf("Codigo modificado exitosamente!\n");
                 }
                 while(isValid != 1);
+
+                //Asignacion de Orquesta
+                for(i = 0; i< ORQ_CANT; i++)
+                {
+                    if(atoi(musLista[index].idOrquesta) == orqLista[i].id)
+                    {
+                        strncpy(musLista[index].descOrq, orqLista[i].nombre, ORQ_LEN);
+                        break;
+                    }
+                }
                 break;
 
             case 3:
-
-                break;
-
-            case 4:
-
-                break;
-
-            case 5:
-
-                break;
-
-            case 6:
-
-                break;
-
-            case 7:
                 break;
 
             default:
-                printf("Error. Las opciones van del 1 al 6.");
+                printf("Error. Las opciones van del 1 al 3.");
 
             }
 
         }
-        while(optionEdit != 6);
+        while(optionEdit != 3);
     }
 
     return ret;
